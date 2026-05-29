@@ -1,3 +1,4 @@
+import gradio as gr
 from groq import Groq
 import os
 from dotenv import load_dotenv
@@ -5,26 +6,36 @@ from dotenv import load_dotenv
 load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-conversation = [
-    {
-        "role": "system",
-        "content": "You are a concise technical explainer. Keep responses under 80 words."
-    }
-]
+def chat_stream(message, history):
+    """Gradio chat function - yields accumulated text for streaming display."""
+    messages = [{"role": "system", "content": "You are a helpful assistant."}]
 
-def chat(user_message: str) -> str:
-    conversation.append({"role": "user", "content": user_message})
+    # include conversation history
+    for msg in history:
+        messages.append(
+            {
+                "role": msg["role"],
+                "content": msg["content"]
+            }
+        )
+    messages.append({"role": "user", "content": message})
 
-    response = client.chat.completions.create(
+    stream = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
-        messages=conversation,
-        temperature=0.7,
-        max_tokens=200,
+        messages=messages,
+        stream=True, # enables streaming
     )
 
-    reply = response.choices[0].message.content
-    conversation.append({"role": "assistant", "content": reply})
-    return reply
+    accumulated = ""
+    for chunk in stream:
+        delta = chunk.choices[0].delta.content or ""
+        
+        if delta is not None:
+            accumulated += delta
+            yield accumulated
 
-print(chat("What is a transformer model?"))
-print(chat("How does the attention mechanism work in it?"))
+# One-line chat UI with streaming built in
+gr.ChatInterface(
+    fn=chat_stream,
+    title="My First AI Chat App",
+).launch()
