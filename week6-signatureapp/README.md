@@ -57,7 +57,7 @@ HybridSight/
 ### 1. Clone the repository
 
 ```bash
-git clone <your-github-repo-url>
+git clone https://github.com/Khushi2007/genai-soc-2026.git
 cd HybridSight
 ```
 
@@ -83,15 +83,13 @@ python app.py
 
 # Live Demo
 
-> **Hugging Face Spaces:** *(Add your deployed URL here after deployment)*
+> **Hugging Face Spaces:** *https://huggingface.co/spaces/KhushiGandhi310707/hybridsight*
 
 ---
 
 # Application Screenshot
 
-```markdown
-![HybridSight](screenshots/live_app.png)
-```
+![HybridSight](screenshots/image.png)
 
 ---
 
