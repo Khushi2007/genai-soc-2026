@@ -32,7 +32,7 @@ HybridSight is a hybrid multimodal AI assistant built with **LangGraph**, **Lang
 ## 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Khushi2007/genai-soc-2026.git
 cd week5-hybridsight
 ```
 

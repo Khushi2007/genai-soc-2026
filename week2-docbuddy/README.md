@@ -74,7 +74,7 @@ This makes the responses more accurate, grounded, and explainable because every 
 Clone the repository and navigate into the project folder.
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Khushi2007/genai-soc-2026.git
 cd genai-soc-2026/week2-docbuddy
 ```
 

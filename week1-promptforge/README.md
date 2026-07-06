@@ -152,7 +152,7 @@ week1-promptforge/
 ## 1. Clone the repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Khushi2007/genai-soc-2026.git
 cd genai-soc-2026/week1-promptforge
 ```
 
